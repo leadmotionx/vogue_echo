@@ -1,12 +1,15 @@
-﻿.main-header {
+.main-header {
   background-color: var(--neutral);
-  padding: 20px 0;
+  padding: 15px 0;
   border-bottom: 1px solid var(--tertiary);
   width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 900;
 }
 
 .header-container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -15,13 +18,25 @@
 }
 
 .logo {
-  width: 160px;
+  width: 140px;
+  transition: width 0.3s;
 }
+
 .header-left {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 15px;
 }
+
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--primary);
+  padding: 0;
+}
+
 .header-center ul {
   list-style: none;
   display: flex;
@@ -32,13 +47,18 @@
 
 .header-center ul li a {
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--primary);
   text-decoration: none;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   position: relative;
   padding-bottom: 5px;
+  transition: opacity 0.3s;
+}
+
+.header-center ul li a:hover {
+  opacity: 0.6;
 }
 
 .header-center ul li a.active::after {
@@ -54,35 +74,19 @@
 .header-right {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
 }
 
-.search-bar {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid var(--tertiary);
-  padding-bottom: 5px;
-}
-
-.search-bar input {
-  background: transparent;
-  border: none;
-  outline: none;
-  font-family: var(--font-body);
-  font-size: 12px;
-  color: var(--primary);
-  margin-left: 10px;
-  width: 120px;
-}
-
-.search-bar input::placeholder {
-  color: var(--primary);
-  opacity: 0.6;
+.search-text {
+  font-size: 10px; 
+  font-weight: 700; 
+  letter-spacing: 2px;
 }
 
 .header-icons {
   display: flex;
-  gap: 15px;
+  gap: 20px;
+  align-items: center;
 }
 
 .icon-btn {
@@ -93,33 +97,43 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  transition: opacity 0.3s;
 }
 
 .icon-btn:hover {
-  background: none;
-  color: var(--secondary);
+  opacity: 0.6;
 }
 
-.icon-btn-link {
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #1a1a1a;
+  color: white;
+  font-size: 9px;
+  font-weight: 700;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
-  color: inherit;
 }
+
+/* Profile Dropdown */
 .profile-dropdown {
   position: absolute;
   top: 100%;
   right: 0;
   background: white;
-  min-width: 160px;
-  border: 1px solid #eee;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  min-width: 180px;
+  border: 1px solid #f0f0f0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   display: none;
   flex-direction: column;
   padding: 10px 0;
   z-index: 1000;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .profile-group:hover .profile-dropdown {
@@ -127,30 +141,134 @@
 }
 
 .profile-dropdown a, .profile-dropdown button {
-  padding: 12px 20px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 1px;
+  padding: 12px 25px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
   text-decoration: none;
-  color: #1c1c1c;
+  color: #1a1a1a;
   text-align: left;
   background: none;
   border: none;
   cursor: pointer;
   transition: background 0.3s;
+  text-transform: uppercase;
 }
 
 .profile-dropdown a:hover, .profile-dropdown button:hover {
   background: #f9f9f9;
 }
 
-.profile-dropdown::before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  right: 10px;
-  width: 100%;
-  height: 10px;
-  background: transparent;
+/* Mobile Sidebar Styles */
+.mobile-sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 300px;
+    height: 100%;
+    background: white;
+    z-index: 2000;
+    transition: 0.4s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    box-shadow: 10px 0 30px rgba(0,0,0,0.05);
 }
 
+.mobile-sidebar.active {
+    left: 0;
+}
+
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.sidebar-logo {
+    width: 120px;
+}
+
+.close-menu {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.mobile-nav a {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-decoration: none;
+    color: #1a1a1a;
+    transition: opacity 0.3s;
+}
+
+.sidebar-divider {
+    height: 1px;
+    background: #eee;
+    margin: 10px 0;
+}
+
+.sidebar-logout {
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ef4444;
+    cursor: pointer;
+}
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.2);
+    backdrop-filter: blur(4px);
+    z-index: 1500;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) {
+    .header-center {
+        display: none; /* Hide desktop nav */
+    }
+    
+    .mobile-menu-toggle {
+        display: block; /* Show mobile menu icon */
+    }
+    
+    .header-container {
+        padding: 0 20px;
+    }
+    
+    .logo {
+        width: 120px;
+    }
+}
+
+@media (max-width: 640px) {
+    .search-text {
+        display: none; /* Hide 'SEARCH' text on small mobile, keep icon */
+    }
+    
+    .header-right {
+        gap: 15px;
+    }
+    
+    .logo {
+        width: 100px;
+    }
+}
