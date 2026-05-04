@@ -9,6 +9,11 @@ const Edit = ({ token }) => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const [image1, setImage1] = useState(false);
+  const [image2, setImage2] = useState(false);
+  const [image3, setImage3] = useState(false);
+  const [image4, setImage4] = useState(false);
+
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
@@ -67,21 +72,27 @@ const Edit = ({ token }) => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
+      const formData = new FormData();
+      formData.append("id", id);
+      formData.append("name", name);
+      formData.append("description", description);
+      formData.append("price", price);
+      formData.append("discount", discount);
+      formData.append("collection", collection);
+      formData.append("category", category);
+      formData.append("subCategory", subCategory);
+      formData.append("bestseller", bestseller);
+      formData.append("isNewArrival", isNewArrival);
+      formData.append("sizes", JSON.stringify(sizes));
+
+      image1 && formData.append("image1", image1);
+      image2 && formData.append("image2", image2);
+      image3 && formData.append("image3", image3);
+      image4 && formData.append("image4", image4);
+
       const response = await axios.post(
         backendUrl + "/api/product/update",
-        {
-          id,
-          name,
-          description,
-          price,
-          discount,
-          collection,
-          category,
-          subCategory,
-          bestseller,
-          isNewArrival,
-          sizes: JSON.stringify(sizes),
-        },
+        formData,
         { headers: { token } },
       );
 
@@ -111,16 +122,18 @@ const Edit = ({ token }) => {
 
       <form onSubmit={onSubmitHandler} className="flex flex-col gap-8">
         <div className="bg-white p-10 border border-[#eee]">
-          <p className="stat-title mb-6">Current Images</p>
+          <p className="stat-title mb-6">Product Images</p>
           <div className="flex gap-6">
+            {/* Existing Images Display */}
             {existingImages.map((img, idx) => (
               <div
-                key={idx}
+                key={`existing-${idx}`}
                 style={{
                   width: "120px",
                   height: "150px",
                   border: "1px solid #eee",
                   overflow: "hidden",
+                  opacity: (image1 || image2 || image3 || image4) ? 0.3 : 1
                 }}
               >
                 <img
@@ -131,9 +144,60 @@ const Edit = ({ token }) => {
               </div>
             ))}
           </div>
+
+          <div className="flex gap-6 mt-10 border-t pt-10">
+            <div className="w-full">
+              <p className="text-[11px] mb-4 text-[#888]">UPLOAD NEW IMAGES TO REPLACE EXISTING</p>
+              <div className="flex gap-6">
+                {[image1, image2, image3, image4].map((img, idx) => (
+                  <label
+                    key={idx}
+                    htmlFor={`image${idx + 1}`}
+                    className="cursor-pointer"
+                  >
+                    <div
+                      style={{
+                        width: "120px",
+                        height: "150px",
+                        border: "1px dashed #ccc",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        background: "#fcfcfc",
+                        overflow: "hidden",
+                      }}
+                    >
+                      {!img ? (
+                        <Upload size={24} color="#ccc" />
+                      ) : (
+                        <img
+                          src={URL.createObjectURL(img)}
+                          alt=""
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                          }}
+                        />
+                      )}
+                    </div>
+                    <input
+                      onChange={(e) =>
+                        [setImage1, setImage2, setImage3, setImage4][idx](
+                          e.target.files[0],
+                        )
+                      }
+                      type="file"
+                      id={`image${idx + 1}`}
+                      hidden
+                    />
+                  </label>
+                ))}
+              </div>
+            </div>
+          </div>
           <p style={{ fontSize: "12px", color: "#888", marginTop: "15px" }}>
-            Note: Image update is currently restricted to new additions. Archive
-            edit focuses on metadata.
+            Note: Selecting new images will replace all existing ones for this product.
           </p>
         </div>
 
