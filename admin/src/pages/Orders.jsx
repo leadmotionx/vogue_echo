@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { Package, MapPin, Phone, CreditCard, Calendar, Hash } from 'lucide-react'
+import { backendUrl } from '../config'
 
 const Orders = ({ token }) => {
   const [orders, setOrders] = useState([]);
-  const backendUrl = "http://localhost:4000";
 
   const fetchOrders = async () => {
     try {

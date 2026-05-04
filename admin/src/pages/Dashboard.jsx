@@ -17,6 +17,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import { backendUrl } from '../config';
 
 ChartJS.register(
   CategoryScale,
@@ -39,7 +40,7 @@ const Dashboard = ({ token }) => {
 
   const fetchDashboardData = async () => {
     try {
-      const response = await axios.get('http://localhost:4000/api/dashboard/stats', { headers: { token } });
+      const response = await axios.get(backendUrl + '/api/dashboard/stats', { headers: { token } });
       if (response.data.success) {
         setStats(response.data.stats);
         setRecentOrders(response.data.recentOrders);
