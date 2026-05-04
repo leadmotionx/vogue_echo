@@ -22,8 +22,14 @@ app.use(express.json());
 app.use(cors());
 app.use('/uploads', express.static('uploads'));
 
-// Database connection
-connectDB();
+// Database connection middleware
+const dbMiddleware = async (req, res, next) => {
+    await connectDB();
+    next();
+};
+
+app.use('/api', dbMiddleware);
+
 connectCloudinary();
 
 // API routes
