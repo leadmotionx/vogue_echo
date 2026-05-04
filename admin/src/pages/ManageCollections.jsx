@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { Trash2, Plus, Upload } from 'lucide-react'
+import { backendUrl } from '../config'
 
 const ManageCollections = ({ token }) => {
   const [list, setList] = useState([]);
@@ -11,7 +12,7 @@ const ManageCollections = ({ token }) => {
 
   const fetchList = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/collection/list");
+      const response = await axios.get(backendUrl + "/api/collection/list");
       if (response.data.success) {
         setList(response.data.collections);
       }
@@ -29,7 +30,7 @@ const ManageCollections = ({ token }) => {
       formData.append("description", description);
       image && formData.append("image", image);
 
-      const response = await axios.post("http://localhost:4000/api/collection/add", formData, { headers: { token } });
+      const response = await axios.post(backendUrl + "/api/collection/add", formData, { headers: { token } });
 
       if (response.data.success) {
         toast.success(response.data.message);
@@ -49,7 +50,7 @@ const ManageCollections = ({ token }) => {
   const removeCollection = async (id) => {
     if (window.confirm("Are you sure? Products in this collection will stay but the collection tag will be removed.")) {
       try {
-        const response = await axios.post("http://localhost:4000/api/collection/remove", { id }, { headers: { token } });
+        const response = await axios.post(backendUrl + "/api/collection/remove", { id }, { headers: { token } });
         if (response.data.success) {
           toast.success(response.data.message);
           await fetchList();

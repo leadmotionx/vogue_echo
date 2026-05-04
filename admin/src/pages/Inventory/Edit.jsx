@@ -3,6 +3,7 @@ import { Upload, X, Plus } from "lucide-react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useParams, useNavigate } from "react-router-dom";
+import { backendUrl } from "../../config";
 
 const Edit = ({ token }) => {
   const { id } = useParams();
@@ -23,7 +24,7 @@ const Edit = ({ token }) => {
 
   const fetchCollections = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/collection/list");
+      const response = await axios.get(backendUrl + "/api/collection/list");
       if (response.data.success) {
         setCollectionsList(response.data.collections);
       }
@@ -35,7 +36,7 @@ const Edit = ({ token }) => {
   const fetchProductData = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/product/single",
+        backendUrl + "/api/product/single",
         { id },
       );
       if (response.data.success) {
@@ -67,7 +68,7 @@ const Edit = ({ token }) => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/product/update",
+        backendUrl + "/api/product/update",
         {
           id,
           name,
@@ -123,7 +124,7 @@ const Edit = ({ token }) => {
                 }}
               >
                 <img
-                  src={`http://localhost:4000/uploads/${img}`}
+                  src={img.startsWith('http') ? img : backendUrl + "/uploads/" + img}
                   alt=""
                   style={{ width: "100%", height: "100%", objectFit: "cover" }}
                 />

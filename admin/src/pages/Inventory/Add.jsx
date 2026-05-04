@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Upload, X, Plus } from "lucide-react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { backendUrl } from "../../config";
 
 const Add = ({ token }) => {
   const [image1, setImage1] = useState(false);
@@ -23,7 +24,7 @@ const Add = ({ token }) => {
 
   const fetchCollections = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/collection/list");
+      const response = await axios.get(backendUrl + "/api/collection/list");
       if (response.data.success) {
         setCollectionsList(response.data.collections);
       }
@@ -57,7 +58,7 @@ const Add = ({ token }) => {
       image4 && formData.append("image4", image4);
 
       const response = await axios.post(
-        "http://localhost:4000/api/product/add",
+        backendUrl + "/api/product/add",
         formData,
         { headers: { token } },
       );

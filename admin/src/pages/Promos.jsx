@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Trash2, Plus, Ticket } from "lucide-react";
+import { backendUrl } from "../config";
 
 const Promos = ({ token }) => {
   const [code, setCode] = useState("");
@@ -11,7 +12,7 @@ const Promos = ({ token }) => {
 
   const fetchPromos = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/promo/list");
+      const response = await axios.get(backendUrl + "/api/promo/list");
       if (response.data.success) {
         setPromos(response.data.promos);
       }
@@ -26,7 +27,7 @@ const Promos = ({ token }) => {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/promo/add",
+        backendUrl + "/api/promo/add",
         { code, discount: Number(discount) },
         { headers: { token } },
       );
@@ -50,7 +51,7 @@ const Promos = ({ token }) => {
   const removePromo = async (id) => {
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/promo/remove",
+        backendUrl + "/api/promo/remove",
         { id },
         { headers: { token } },
       );

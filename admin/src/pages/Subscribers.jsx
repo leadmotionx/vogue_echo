@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { Users, Mail, Calendar } from 'lucide-react'
+import { backendUrl } from '../config'
 
 const Subscribers = ({ token }) => {
   const [subscribers, setSubscribers] = useState([]);
 
   const fetchSubscribers = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/subscriber/list", { headers: { token } });
+      const response = await axios.get(backendUrl + "/api/subscriber/list", { headers: { token } });
       if (response.data.success) {
         setSubscribers(response.data.subscribers);
       }

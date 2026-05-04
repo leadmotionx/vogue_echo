@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { Trash2, Edit, Eye, Search, Filter } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { backendUrl } from "../../config";
 
 const List = ({ token }) => {
   const [list, setList] = useState([]);
@@ -12,7 +13,7 @@ const List = ({ token }) => {
   const fetchList = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:4000/api/product/list",
+        backendUrl + "/api/product/list",
       );
       if (response.data.success) {
         setList(response.data.products);
@@ -29,7 +30,7 @@ const List = ({ token }) => {
     if (window.confirm("Are you sure you want to remove this product?")) {
       try {
         const response = await axios.post(
-          "http://localhost:4000/api/product/remove",
+          backendUrl + "/api/product/remove",
           { id },
           { headers: { token } },
         );
@@ -105,7 +106,7 @@ const List = ({ token }) => {
                 <tr key={index}>
                 <td style={{ padding: "15px 40px" }}>
                   <img
-                    src={`http://localhost:4000/uploads/${item.image[0]}`}
+                    src={item.image[0].startsWith('http') ? item.image[0] : backendUrl + "/uploads/" + item.image[0]}
                     alt=""
                     style={{
                       width: "50px",
