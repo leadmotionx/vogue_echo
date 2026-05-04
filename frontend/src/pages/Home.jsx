@@ -45,13 +45,13 @@ const Home = () => {
           className="mySwiper"
         >
           <SwiperSlide>
-            <div className="slide-bg" style={{ backgroundImage: `url(${assets.about_us})` }}></div>
+            <img src={assets.about_us} alt="" className="hero-slide-img" />
           </SwiperSlide>
           <SwiperSlide>
-            <div className="slide-bg" style={{ backgroundImage: `url(${assets.archive_1})` }}></div>
+            <img src={assets.archive_1} alt="" className="hero-slide-img" />
           </SwiperSlide>
           <SwiperSlide>
-            <div className="slide-bg" style={{ backgroundImage: `url(${assets.arrival_1})` }}></div>
+            <img src={assets.arrival_1} alt="" className="hero-slide-img" />
           </SwiperSlide>
         </Swiper>
         

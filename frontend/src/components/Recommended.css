@@ -1,121 +1,117 @@
-﻿.recommended-section {
-  padding: 80px 0;
-  border-top: 1px solid var(--tertiary);
-  margin-top: 40px;
+.recommended-section {
+  padding: 100px 0;
+  border-top: 1px solid #eee;
 }
 
-.section-header-left {
-  text-align: left;
-  margin-bottom: 40px;
+.recommended-section .section-header {
+  margin-bottom: 50px;
+  display: block;
 }
 
-.recommended-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-.product-card {
-  transition: opacity 0.3s;
-}
-
-.product-image {
-  position: relative;
-  aspect-ratio: 1/1.2;
-  background-color: #f7f7f7;
-  overflow: hidden;
-  margin-bottom: 15px;
-}
-
-.product-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.product-card:hover img {
-  transform: scale(1.05);
-}
-
-.product-details-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.prod-title-small {
-  font-size: 11px;
-  font-weight: 600;
+.recommended-section .section-header h3 {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-top: 10px;
   letter-spacing: 1px;
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-
-.prod-price-small {
-  font-family: var(--font-body);
-  font-size: 12px;
-  color: var(--secondary);
-}
-
-.wishlist-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s;
-}
-
-.wishlist-btn:hover {
-  transform: scale(1.1);
 }
 
 .recommended-swiper-wrapper {
   position: relative;
+  padding: 0;
+}
+
+.recommended-product-card {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.recommended-product-img {
   width: 100%;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background-color: #f9f9f9;
+  margin-bottom: 20px;
 }
 
-/* Custom Swiper Navigation Styles - Outside and Minimal */
-.recommended-swiper {
-  padding: 0 50px 50px 50px !important; /* Added side padding to make room for arrows */
+.recommended-product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-.recommended-swiper .swiper-button-next,
+.recommended-product-card:hover .recommended-product-img img {
+  transform: scale(1.05);
+}
+
+.recommended-product-info h4 {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.recommended-product-info p {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: #666;
+}
+
+.empty-message {
+  padding: 60px 0;
+  color: #888;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 11px;
+  letter-spacing: 2px;
+}
+
+/* Swiper Navigation Customization */
+.recommended-swiper .swiper-button-prev,
+.recommended-swiper .swiper-button-next {
+  color: #1a1a1a;
+  transform: scale(0.6);
+  transition: all 0.3s;
+}
+
 .recommended-swiper .swiper-button-prev {
-  color: #888 !important;
-  background: transparent;
-  width: 30px !important;
-  height: 30px !important;
-  transition: all 0.3s ease;
-  top: 40% !important; /* Center vertically relative to image */
-}
-
-.recommended-swiper .swiper-button-prev {
-  left: 0px !important;
+  left: -40px;
 }
 
 .recommended-swiper .swiper-button-next {
-  right: 0px !important;
+  right: -40px;
 }
 
-.recommended-swiper .swiper-button-next:hover,
-.recommended-swiper .swiper-button-prev:hover {
-  color: black !important;
-  transform: scale(1.2);
+.recommended-swiper .swiper-button-prev:hover,
+.recommended-swiper .swiper-button-next:hover {
+  opacity: 0.5;
 }
 
-.recommended-swiper .swiper-button-next::after,
-.recommended-swiper .swiper-button-prev::after {
-  font-size: 18px !important;
-  font-weight: 200;
-}
-
-@media (max-width: 900px) {
+/* Responsive Overrides */
+@media (max-width: 1024px) {
   .recommended-section {
-    padding: 40px 0;
+    padding: 80px 0;
   }
 }
 
+@media (max-width: 768px) {
+  .recommended-swiper-wrapper {
+    padding: 0;
+  }
+  .recommended-swiper .swiper-button-prev,
+  .recommended-swiper .swiper-button-next {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .recommended-section .section-header h3 {
+    font-size: 1.2rem;
+  }
+  .recommended-product-info h4 {
+    font-size: 10px;
+  }
+}

@@ -25,123 +25,125 @@ const ProductDetails = () => {
 
   useEffect(() => {
     fetchProductData();
+    window.scrollTo(0,0);
   }, [productId, products]);
 
   const toggleAccordion = (id) => {
     setActiveAccordion(activeAccordion === id ? null : id);
   };
 
-  return productData ? (
+  if (!productData) {
+      return <div className="loading-container">EXPLORING THE ARCHIVE...</div>
+  }
+
+  return (
     <div className="product-details-page">
       <div className="container">
         <div className="product-main-layout">
-          {/* Left Side: Image Gallery */}
-          <div className="product-gallery">
-            <div className="main-image">
+          
+          {/* Gallery Section */}
+          <div className="gallery-section">
+            <div className="main-image-container">
               <img src={image.startsWith('http') ? image : backendUrl + "/uploads/" + image} alt={productData.name} />
             </div>
-            <div className="secondary-images">
-              <div className="gallery-row" style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+            <div className="thumbnails-wrapper">
+              <div className="thumbnails-scroll">
                 {productData.image.map((item, index) => (
-                  <img 
-                    onClick={() => setImage(item)} 
+                  <div 
                     key={index} 
-                    src={item.startsWith('http') ? item : backendUrl + "/uploads/" + item} 
-                    alt="" 
-                    style={{ width: '100px', cursor: 'pointer', border: image === item ? '1px solid black' : 'none' }} 
-                  />
+                    className={`thumb-item ${image === item ? 'active' : ''}`}
+                    onClick={() => setImage(item)}
+                  >
+                    <img src={item.startsWith('http') ? item : backendUrl + "/uploads/" + item} alt="" />
+                  </div>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Right Side: Product Info */}
-          <div className="product-info-sticky">
-            {productData.isNewArrival && <span className="tag-small">NEW ARRIVAL</span>}
-            <h1 className="product-title-large" style={{ textTransform: 'uppercase' }}>{productData.name}</h1>
-            <div className="price-wrapper" style={{ display: 'flex', gap: '20px', alignItems: 'baseline', marginBottom: '20px', flexWrap: 'wrap' }}>
-              <p className="product-price-large" style={{ fontSize: '28px', fontWeight: '400' }}>{currency}{productData.price - (productData.price * productData.discount / 100)}</p>
-              {productData.discount > 0 && (
-                <>
-                  <p className="old-price" style={{ textDecoration: 'line-through', color: '#888', fontSize: '18px' }}>{currency}{productData.price}</p>
-                  <span className="discount-tag" style={{ color: '#ef4444', fontSize: '14px', fontWeight: 'bold', background: '#fee2e2', padding: '4px 12px', borderRadius: '4px' }}>{productData.discount}% OFF</span>
-                </>
-              )}
-            </div>
-            
-            <p className="product-description-short">
-              {productData.description}
-            </p>
-
-            <div className="size-selection-area">
-              <div className="size-header">
-                <span>SELECT SIZE</span>
-                <button className="size-guide-btn">SIZE GUIDE</button>
-              </div>
-              <div className="size-grid">
-                {productData.sizes.map((size, index) => (
-                  <button 
-                    key={index} 
-                    className={`size-box ${selectedSize === size ? 'active' : ''}`}
-                    onClick={() => setSelectedSize(size)}
-                  >
-                    {size}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="action-buttons">
-              <button onClick={() => addToCart(productData._id, selectedSize)} className="btn-add-to-bag">ADD TO BAG</button>
-              <button className="btn-find-store">FIND IN STORE</button>
-            </div>
-
-            {/* Accordions */}
-            <div className="product-accordions">
-              <div className="accordion-item">
-                <button className="accordion-header" onClick={() => toggleAccordion('details')}>
-                  PRODUCT DETAILS
-                  <span className={`icon ${activeAccordion === 'details' ? 'open' : ''}`}>+</span>
-                </button>
-                {activeAccordion === 'details' && (
-                  <div className="accordion-content">
-                    <p>Designed with architectural precision and premium materials. Part of our {productData.collection || 'Essential'} collection.</p>
-                  </div>
+          {/* Details Section */}
+          <div className="details-section">
+            <div className="details-sticky-content">
+              {productData.isNewArrival && <span className="product-badge">NEW ARRIVAL</span>}
+              <h1 className="product-name">{productData.name}</h1>
+              
+              <div className="product-pricing">
+                <span className="current-price">{currency}{productData.price - (productData.price * productData.discount / 100)}</span>
+                {productData.discount > 0 && (
+                  <>
+                    <span className="original-price">{currency}{productData.price}</span>
+                    <span className="discount-percent">{productData.discount}% OFF</span>
+                  </>
                 )}
               </div>
 
-              <div className="accordion-item">
-                <button className="accordion-header" onClick={() => toggleAccordion('composition')}>
-                  COMPOSITION & CARE
-                  <span className={`icon ${activeAccordion === 'composition' ? 'open' : ''}`}>+</span>
-                </button>
-                {activeAccordion === 'composition' && (
-                  <div className="accordion-content">
-                    <p>100% Premium Quality materials. Please refer to label for specific care instructions.</p>
-                  </div>
-                )}
+              <p className="product-summary">{productData.description}</p>
+
+              <div className="size-selector-container">
+                <div className="size-selector-header">
+                  <label>SELECT SIZE</label>
+                  <button className="guide-link">SIZE GUIDE</button>
+                </div>
+                <div className="size-options-grid">
+                  {productData.sizes.map((size, index) => (
+                    <button 
+                      key={index} 
+                      className={`size-option-btn ${selectedSize === size ? 'selected' : ''}`}
+                      onClick={() => setSelectedSize(size)}
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
               </div>
 
-              <div className="accordion-item">
-                <button className="accordion-header" onClick={() => toggleAccordion('shipping')}>
-                  SHIPPING & RETURNS
-                  <span className={`icon ${activeAccordion === 'shipping' ? 'open' : ''}`}>+</span>
+              <div className="purchase-actions">
+                <button onClick={() => addToCart(productData._id, selectedSize)} className="add-to-cart-btn">
+                  ADD TO SHOPPING BAG
                 </button>
-                {activeAccordion === 'shipping' && (
-                  <div className="accordion-content">
-                    <p>Complimentary shipping and returns on all editorial orders.</p>
+                <button className="wishlist-btn-outline">
+                  SAVE TO WISHLIST
+                </button>
+              </div>
+
+              <div className="product-info-accordions">
+                <div className="info-accordion-item">
+                  <div className="info-header" onClick={() => toggleAccordion('details')}>
+                    <span>DESCRIPTION & FIT</span>
+                    <span className="plus-minus">{activeAccordion === 'details' ? '−' : '+'}</span>
                   </div>
-                )}
+                  <div className={`info-body ${activeAccordion === 'details' ? 'open' : ''}`}>
+                    <div className="info-content">
+                      <p>A masterfully crafted piece from our {productData.collection || 'Editorial'} collection. Designed for a timeless silhouette with premium attention to detail.</p>
+                      <ul>
+                        <li>Premium Materials</li>
+                        <li>Signature Vogue Echo Fit</li>
+                        <li>Artisanal Craftsmanship</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="info-accordion-item">
+                  <div className="info-header" onClick={() => toggleAccordion('shipping')}>
+                    <span>SHIPPING & RETURNS</span>
+                    <span className="plus-minus">{activeAccordion === 'shipping' ? '−' : '+'}</span>
+                  </div>
+                  <div className={`info-body ${activeAccordion === 'shipping' ? 'open' : ''}`}>
+                    <div className="info-content">
+                      <p>Complimentary standard shipping on all orders. Returns are accepted within 30 days of purchase in original condition.</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Complete the Look / Recommended */}
         <Recommended category={productData.category} />
       </div>
     </div>
-  ) : <div className="container" style={{ padding: '100px 0', textAlign: 'center' }}>Loading product details...</div>;
+  );
 };
 
 export default ProductDetails;
