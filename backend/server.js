@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
+const connectCloudinary = require('./config/cloudinary');
 const adminRouter = require('./routes/adminRoute');
 const userRouter = require('./routes/userRoute');
 const productRouter = require('./routes/productRoute');
@@ -23,6 +24,7 @@ app.use('/uploads', express.static('uploads'));
 
 // Database connection
 connectDB();
+connectCloudinary();
 
 // API routes
 app.use('/api/admin', adminRouter);
