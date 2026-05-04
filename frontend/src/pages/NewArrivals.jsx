@@ -95,7 +95,7 @@ const NewArrivals = () => {
                 <Link to={`/product/${product._id}`} key={index} className="product-card-link">
                   <div className="product-card">
                     <div className="product-image">
-                      <img src={backendUrl + "/uploads/" + product.image[0]} alt={product.name} />
+                      <img src={product.image[0].startsWith('http') ? product.image[0] : backendUrl + "/uploads/" + product.image[0]} alt={product.name} />
                       {product.bestseller && <span className="product-tag">BESTSELLER</span>}
                     </div>
                     <div className="product-details">

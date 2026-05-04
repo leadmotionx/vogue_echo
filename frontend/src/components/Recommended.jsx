@@ -49,7 +49,7 @@ const Recommended = ({ category }) => {
               <Link to={`/product/${item._id}`} className="product-card" style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
                 <div className="product-image" style={{ height: '400px', overflow: 'hidden', backgroundColor: '#f9f9f9' }}>
                   <img 
-                    src={backendUrl + "/uploads/" + item.image[0]} 
+                    src={item.image[0].startsWith('http') ? item.image[0] : backendUrl + "/uploads/" + item.image[0]} 
                     alt={item.name} 
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />

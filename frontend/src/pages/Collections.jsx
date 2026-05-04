@@ -61,7 +61,7 @@ const Collections = () => {
                 style={{ cursor: 'pointer' }}
               >
                 <div className="collection-img-wrapper">
-                  <img src={collection.image ? backendUrl + "/uploads/" + collection.image : assets.collection_1} alt={collection.name} />
+                  <img src={collection.image ? (collection.image.startsWith('http') ? collection.image : backendUrl + "/uploads/" + collection.image) : assets.collection_1} alt={collection.name} />
                   <div className="collection-overlay">
                     <div className="overlay-content">
                       <span className="overlay-tag">ARCHIVE</span>
@@ -87,7 +87,7 @@ const Collections = () => {
                   <Link to={`/product/${product._id}`} key={index} className="product-card-link">
                     <div className="product-card">
                       <div className="product-image">
-                        <img src={backendUrl + "/uploads/" + product.image[0]} alt={product.name} />
+                        <img src={product.image[0].startsWith('http') ? product.image[0] : backendUrl + "/uploads/" + product.image[0]} alt={product.name} />
                         {product.bestseller && <span className="product-tag">BESTSELLER</span>}
                         {product.discount > 0 && <span className="discount-tag-float" style={{ position: 'absolute', top: '10px', right: '10px', background: '#ef4444', color: 'white', padding: '4px 8px', fontSize: '10px', fontWeight: 'bold' }}>{product.discount}% OFF</span>}
                       </div>

@@ -38,7 +38,7 @@ const ProductDetails = () => {
           {/* Left Side: Image Gallery */}
           <div className="product-gallery">
             <div className="main-image">
-              <img src={backendUrl + "/uploads/" + image} alt={productData.name} />
+              <img src={image.startsWith('http') ? image : backendUrl + "/uploads/" + image} alt={productData.name} />
             </div>
             <div className="secondary-images">
               <div className="gallery-row" style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
@@ -46,7 +46,7 @@ const ProductDetails = () => {
                   <img 
                     onClick={() => setImage(item)} 
                     key={index} 
-                    src={backendUrl + "/uploads/" + item} 
+                    src={item.startsWith('http') ? item : backendUrl + "/uploads/" + item} 
                     alt="" 
                     style={{ width: '100px', cursor: 'pointer', border: image === item ? '1px solid black' : 'none' }} 
                   />

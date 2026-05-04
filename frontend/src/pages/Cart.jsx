@@ -44,7 +44,7 @@ const Cart = () => {
                 return (
                   <div key={index} className="cart-item">
                     <div className="item-img">
-                      <img src={backendUrl + "/uploads/" + productData.image[0]} alt={productData.name} />
+                      <img src={productData.image[0].startsWith('http') ? productData.image[0] : backendUrl + "/uploads/" + productData.image[0]} alt={productData.name} />
                     </div>
                     <div className="item-info">
                       <div className="info-header">

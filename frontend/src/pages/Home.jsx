@@ -85,7 +85,7 @@ const Home = () => {
             {latestProducts.map((item, index) => (
               <Link to={`/product/${item._id}`} key={index} className="product-card">
                 <div className="product-img-wrapper">
-                  <img src={backendUrl + "/uploads/" + item.image[0]} alt={item.name} />
+                  <img src={item.image[0].startsWith('http') ? item.image[0] : backendUrl + "/uploads/" + item.image[0]} alt={item.name} />
                 </div>
                 <div className="product-info">
                   <h4>{item.name}</h4>
@@ -118,7 +118,7 @@ const Home = () => {
             {collections.slice(0, 3).map((collection, index) => (
               <Link to="/collections" key={collection._id} className="curation-item" style={{ cursor: 'pointer', textDecoration: 'none', color: 'inherit' }}>
                 <div className="curation-img-wrapper">
-                  <img src={collection.image ? backendUrl + "/uploads/" + collection.image : assets.collection_1} alt={collection.name} />
+                  <img src={collection.image ? (collection.image.startsWith('http') ? collection.image : backendUrl + "/uploads/" + collection.image) : assets.collection_1} alt={collection.name} />
                   <div className="item-label">
                     <span className="num">0{index + 1}</span>
                     <h4>{collection.name}</h4>

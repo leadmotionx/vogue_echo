@@ -100,7 +100,7 @@ const SearchBar = () => {
                                     onMouseOut={(e) => e.currentTarget.style.background = 'none'}
                                 >
                                     <img 
-                                        src={`${backendUrl}/uploads/${item.image[0]}`} 
+                                        src={item.image[0].startsWith('http') ? item.image[0] : `${backendUrl}/uploads/${item.image[0]}`} 
                                         alt="" 
                                         style={{ width: '60px', height: '80px', objectFit: 'cover' }} 
                                     />
