@@ -10,10 +10,16 @@ const connectDB = async () => {
             console.error('❌ MongoDB Connection Error:', err.message);
         });
 
+        console.log('[DEBUG] Checking MONGODB_URI...');
+        if (!process.env.MONGODB_URI) {
+            console.error('❌ MONGODB_URI is UNDEFINED in process.env');
+            console.log('[DEBUG] Available Environment Keys:', Object.keys(process.env).filter(k => !k.includes('SECRET') && !k.includes('PASS')));
+        }
+
         // Strict connection options
         await mongoose.connect(process.env.MONGODB_URI, {
             dbName: 'test',
-            serverSelectionTimeoutMS: 5000, // 5 seconds timeout
+            serverSelectionTimeoutMS: 5000, 
         });
         
     } catch (error) {
