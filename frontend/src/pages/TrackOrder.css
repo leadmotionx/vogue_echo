@@ -1,0 +1,291 @@
+.track-page {
+    padding: 100px 0;
+    min-height: 90vh;
+}
+
+.track-hero {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 80px;
+}
+
+.track-hero h1 {
+    font-size: 48px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.track-hero p {
+    color: var(--secondary);
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.track-form {
+    margin-top: 40px;
+    padding: 40px;
+    background: white;
+    border: 1px solid #eee;
+}
+
+.track-input-group label {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-with-btn {
+    display: flex;
+    gap: 15px;
+}
+
+.input-with-btn input {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #eee;
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.input-with-btn button {
+    padding: 0 30px;
+    background: #1c1c1c;
+    color: white;
+    border: none;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.input-with-btn button:hover {
+    background: black;
+}
+
+/* Results Section */
+.track-results {
+    margin-top: 60px;
+}
+
+.track-status-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eee;
+}
+
+.track-status-header h2 {
+    font-size: 32px;
+    letter-spacing: 1px;
+    margin-top: 5px;
+}
+
+.label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+}
+
+/* Progress Bar */
+.track-progress-bar {
+    display: flex;
+    justify-content: space-between;
+    margin: 80px 0;
+    position: relative;
+}
+
+.progress-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.step-circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #e5e5e5;
+    margin-bottom: 15px;
+    transition: background 0.3s;
+}
+
+.progress-step.active .step-circle {
+    background: black;
+    box-shadow: 0 0 0 4px rgba(0,0,0,0.05);
+}
+
+.step-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: #888;
+    letter-spacing: 1px;
+}
+
+.progress-step.active .step-label {
+    color: black;
+}
+
+.step-line {
+    position: absolute;
+    height: 1px;
+    background: #e5e5e5;
+    width: 100%;
+    top: 6px;
+    left: 50%;
+    z-index: -1;
+}
+
+.progress-step.active .step-line {
+    background: black;
+}
+
+/* Details Grid */
+.track-details-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 60px;
+    margin-top: 60px;
+}
+
+.shipment-log h3, .order-summary-card h3 {
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.log-item {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+    opacity: 0.4;
+}
+
+.log-item.active {
+    opacity: 1;
+}
+
+.log-date {
+    font-size: 12px;
+    color: #888;
+    width: 80px;
+}
+
+.log-info strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.log-info p {
+    font-size: 12px;
+    color: #666;
+}
+
+/* Summary Card */
+.order-summary-card {
+    background: #f9f9f9;
+    padding: 30px;
+}
+
+.summary-item {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.summary-item img {
+    width: 60px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.item-txt h4 {
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.item-txt p {
+    font-size: 11px;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.item-txt span {
+    font-size: 12px;
+}
+
+.summary-totals {
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.total-row.final {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed #ddd;
+}
+
+.shipping-address-box {
+    margin-top: 30px;
+}
+
+.shipping-address-box p {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+.track-assistance {
+    margin-top: 100px;
+    text-align: center;
+    border-top: 1px solid #eee;
+    padding-top: 60px;
+}
+
+.track-assistance p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.assistance-links {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.assistance-links a {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+    .track-details-grid {
+        grid-template-columns: 1fr;
+    }
+}

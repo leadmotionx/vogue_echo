@@ -1,0 +1,102 @@
+.success-page {
+    padding: 120px 0;
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    background: #fcfcfc;
+}
+
+.success-card {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    background: white;
+    padding: 80px 40px;
+    border: 1px solid #eee;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+}
+
+.success-icon {
+    margin-bottom: 30px;
+    color: #10b981;
+}
+
+.success-card h1 {
+    font-size: 36px;
+    letter-spacing: 1px;
+    margin: 20px 0;
+}
+
+.success-card p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.order-number-box {
+    margin: 40px 0;
+    padding: 30px;
+    background: #f9f9f9;
+    border: 1px dashed #ddd;
+}
+
+.order-id-display {
+    font-size: 20px;
+    letter-spacing: 2px;
+    margin: 10px 0;
+    font-family: monospace;
+    color: #1c1c1c;
+}
+
+.order-number-box .note {
+    font-size: 12px;
+    color: #888;
+}
+
+.success-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.success-actions button {
+    padding: 15px 30px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.success-footer {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid #eee;
+}
+
+.success-footer p {
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #888;
+}
+
+.footer-links a {
+    color: #1c1c1c;
+    text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .success-actions {
+        flex-direction: column;
+    }
+}

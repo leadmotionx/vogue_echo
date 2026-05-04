@@ -1,0 +1,170 @@
+.login-page {
+  padding: 60px 0;
+  background-color: #fff;
+  min-height: 80vh;
+}
+
+.login-logo-header {
+  text-align: center;
+  padding: 40px 0;
+  background-color: #f7f7f7;
+  margin-bottom: 60px;
+}
+
+.login-logo-header img {
+  height: 80px;
+}
+
+.login-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Sign In Column */
+.sign-in-column h2 {
+  font-size: 36px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+.login-subtitle {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+}
+
+.login-form .input-group {
+  margin-bottom: 30px;
+}
+
+.login-form label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 15px;
+  color: var(--primary);
+}
+
+.login-form input {
+  width: 100%;
+  padding: 15px 10px;
+  border: none;
+  border-bottom: 1px solid var(--tertiary);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  background: transparent;
+}
+
+.label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forgot-pwd {
+  background: none;
+  border: none;
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: underline;
+  cursor: pointer;
+  margin-top: 10px;
+  display: flex;
+  justify-content: end;
+}
+
+.btn-login-submit {
+  width: 100%;
+  background-color: var(--primary);
+  color: #fff;
+  padding: 18px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Create Account Column */
+.create-account-column .info-box {
+  background-color: #f9f9f9;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-box h3 {
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: 25px;
+}
+
+.info-box p {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 35px;
+}
+
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 45px;
+}
+
+.benefits-list li {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.benefits-list li span {
+  font-weight: normal;
+  color: var(--secondary);
+}
+
+.btn-outline-create {
+  display: block;
+  width: 100%;
+  padding: 18px;
+  border: 1px solid var(--primary);
+  text-align: center;
+  text-decoration: none;
+  color: var(--primary);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin-top: auto;
+}
+
+.btn-outline-create:hover {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  .login-layout {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+}

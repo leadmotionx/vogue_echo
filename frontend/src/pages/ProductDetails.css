@@ -1,0 +1,240 @@
+.product-details-page {
+  padding: 60px 0;
+  background-color: #fff;
+}
+
+.product-main-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: flex-start;
+  margin-bottom: 80px;
+}
+
+/* Gallery */
+.product-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.main-image {
+  width: 100%;
+  aspect-ratio: 1/1.2;
+  background-color: #f7f7f7;
+}
+
+.main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.secondary-images {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.gallery-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.gallery-row img {
+  width: 100%;
+  aspect-ratio: 1/1.2;
+  object-fit: cover;
+  background-color: #f7f7f7;
+}
+
+.lifestyle-image {
+  width: 100%;
+  aspect-ratio: 1/1.2;
+  background-color: #f7f7f7;
+}
+
+.lifestyle-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Info */
+.product-info-sticky {
+  position: sticky;
+  top: 100px;
+}
+
+.tag-small {
+  font-family: var(--font-body);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--secondary);
+  display: block;
+  margin-bottom: 15px;
+}
+
+.product-title-large {
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 15px;
+}
+
+.product-price-large {
+  font-family: var(--font-body);
+  font-size: 20px;
+  color: var(--secondary);
+  margin-bottom: 40px;
+}
+
+.product-description-short {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 45px;
+  max-width: 500px;
+}
+
+/* Size selection */
+.size-selection-area {
+  margin-bottom: 40px;
+}
+
+.size-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.size-guide-btn {
+  background: none;
+  border: none;
+  font-size: 9px;
+  text-decoration: underline;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.size-grid {
+  display: flex;
+  gap: 10px;
+}
+
+.size-box {
+  flex: 1;
+  height: 50px;
+  border: 1px solid var(--tertiary);
+  background: none;
+  font-family: var(--font-body);
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.size-box.active {
+  border-color: var(--primary);
+  background-color: #fff;
+}
+
+.size-box:hover:not(.active) {
+  border-color: var(--secondary);
+}
+
+/* Buttons */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 60px;
+}
+
+.btn-add-to-bag {
+  background-color: var(--primary);
+  color: #fff;
+  padding: 20px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-find-store {
+  background: none;
+  border: 1px solid var(--tertiary);
+  padding: 20px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+/* Accordions */
+.product-accordions {
+  border-top: 1px solid var(--tertiary);
+}
+
+.accordion-item {
+  border-bottom: 1px solid var(--tertiary);
+}
+
+.accordion-header {
+  width: 100%;
+  padding: 25px 0;
+  background: none;
+  border: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  text-align: left;
+}
+.accordion-header:hover {
+  background-color: #fff;
+}
+
+.accordion-header .icon {
+  font-size: 18px;
+  transition: transform 0.3s;
+}
+
+.accordion-header .icon.open {
+  transform: rotate(45deg);
+}
+
+.accordion-content {
+  padding-bottom: 25px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.accordion-content ul {
+  padding-left: 20px;
+}
+
+@media (max-width: 1024px) {
+  .product-main-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .product-info-sticky {
+    position: static;
+  }
+}
