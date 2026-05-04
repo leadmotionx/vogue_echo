@@ -19,7 +19,7 @@ const connectDB = async () => {
         // Strict connection options
         await mongoose.connect(process.env.MONGODB_URI, {
             dbName: 'test',
-            serverSelectionTimeoutMS: 5000, 
+            serverSelectionTimeoutMS: 15000, // Increased to 15s
         });
         
     } catch (error) {
