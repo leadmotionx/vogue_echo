@@ -1,21 +1,58 @@
 const collectionModel = require('../models/collectionModel');
+const cloudinary = require('cloudinary').v2;
 
 // Add Collection
 const addCollection = async (req, res) => {
     try {
         const { name, description } = req.body;
-        const image = req.file ? req.file.filename : "";
+        const imageFile = req.file;
+
+        let imageUrl = "";
+        if (imageFile) {
+            const result = await cloudinary.uploader.upload(imageFile.path, { resource_type: 'image' });
+            imageUrl = result.secure_url;
+        }
 
         const collectionData = {
             name,
             description,
-            image
+            image: imageUrl
         };
 
         const collection = new collectionModel(collectionData);
         await collection.save();
 
         res.json({ success: true, message: "Collection Created" });
+
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message });
+    }
+};
+
+// Update Collection
+const updateCollection = async (req, res) => {
+    try {
+        const { id, name, description } = req.body;
+        const imageFile = req.file;
+
+        const updateData = {
+            name,
+            description
+        };
+
+        if (imageFile) {
+            const result = await cloudinary.uploader.upload(imageFile.path, { resource_type: 'image' });
+            updateData.image = result.secure_url;
+        }
+
+        const updatedCollection = await collectionModel.findByIdAndUpdate(id, updateData, { new: true });
+
+        if (!updatedCollection) {
+            return res.json({ success: false, message: "Collection not found" });
+        }
+
+        res.json({ success: true, message: "Collection Updated", collection: updatedCollection });
 
     } catch (error) {
         console.log(error);
@@ -45,4 +82,4 @@ const removeCollection = async (req, res) => {
     }
 };
 
-module.exports = { addCollection, listCollections, removeCollection };
+module.exports = { addCollection, listCollections, removeCollection, updateCollection };
