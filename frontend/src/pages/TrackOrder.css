@@ -1,4 +1,4 @@
-.track-page {
+﻿.track-page {
     padding: 100px 0;
     min-height: 90vh;
 }
@@ -289,3 +289,4 @@
         grid-template-columns: 1fr;
     }
 }
+

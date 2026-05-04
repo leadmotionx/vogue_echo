@@ -1,4 +1,4 @@
-.new-arrivals-page {
+﻿.new-arrivals-page {
   padding: 80px 0;
   background-color: #fff;
 }
@@ -265,3 +265,4 @@
     grid-template-columns: 1fr;
   }
 }
+

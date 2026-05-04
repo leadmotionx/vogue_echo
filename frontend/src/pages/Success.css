@@ -1,4 +1,4 @@
-.success-page {
+﻿.success-page {
     padding: 120px 0;
     min-height: 90vh;
     display: flex;
@@ -100,3 +100,4 @@
         flex-direction: column;
     }
 }
+

@@ -1,4 +1,4 @@
-.app-wrapper {
+﻿.app-wrapper {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -11,3 +11,4 @@
 @media (max-width: 900px) {
   /* Global responsive adjustments if needed */
 }
+

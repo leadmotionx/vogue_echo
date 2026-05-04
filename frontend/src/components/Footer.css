@@ -1,4 +1,4 @@
-.vogue-footer {
+﻿.vogue-footer {
   background-color: var(--neutral);
   padding: 80px 0 40px;
   border-top: 1px solid var(--tertiary);
@@ -99,3 +99,4 @@
     justify-content: center;
   }
 }
+
