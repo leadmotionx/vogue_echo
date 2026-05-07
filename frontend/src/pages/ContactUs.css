@@ -88,6 +88,11 @@ address {
   gap: 25px;
 }
 
+.social-links a {
+  text-decoration: none;
+  color: inherit;
+}
+
 .social-links span {
   font-family: var(--font-body);
   font-size: 10px;
@@ -97,6 +102,24 @@ address {
   cursor: pointer;
   border-bottom: 1px solid #1a1a1a;
   padding-bottom: 2px;
+  transition: all 0.3s;
+}
+
+.social-links a:hover span {
+  color: #555;
+  border-bottom-color: #555;
+}
+
+.whatsapp-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.whatsapp-link:hover {
+  color: #25D366 !important;
+  opacity: 1 !important;
 }
 
 /* Contact Form */
