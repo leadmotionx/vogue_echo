@@ -70,14 +70,24 @@ const Checkout = () => {
       };
 
       if (paymentMethod === "cod") {
-        const response = await axios.post(
-          backendUrl + "/api/order/place",
-          orderData,
-          { headers: { token } },
-        );
+        let response;
+        if (token) {
+          // Logged in user - use authenticated endpoint
+          response = await axios.post(
+            backendUrl + "/api/order/place",
+            orderData,
+            { headers: { token } },
+          );
+        } else {
+          // Guest user - use guest endpoint (no auth required)
+          response = await axios.post(
+            backendUrl + "/api/order/guest",
+            orderData,
+          );
+        }
         if (response.data.success) {
           toast.success("Order placed successfully!");
-          navigate("/success", { state: { orderId: response.data.orderId } });
+          navigate("/success", { state: { orderId: response.data.orderId, email: formData.email } });
         } else {
           toast.error(response.data.message);
         }

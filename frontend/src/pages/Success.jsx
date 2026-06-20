@@ -8,6 +8,7 @@ const Success = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const orderId = location.state?.orderId || "N/A";
+    const email = location.state?.email || "";
 
     useEffect(() => {
         // Clear cart on reaching success page
@@ -27,20 +28,30 @@ const Success = () => {
                     <p>Your order has been received and is currently being processed by our curation team.</p>
                     
                     <div className="order-number-box">
-                        <span className="label">ORDER IDENTIFIER</span>
+                        <span className="label">YOUR TRACKING ID</span>
                         <h3 className="order-id-display">{orderId}</h3>
-                        <p className="note">Please keep this ID for your records and shipment tracking.</p>
+                        <p className="note">Save this Tracking ID — you'll need it to track your shipment.</p>
                     </div>
 
+                    {email && (
+                        <div className="email-confirm-box">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            <p>A confirmation email with your Tracking ID has been sent to <strong>{email}</strong></p>
+                        </div>
+                    )}
+
                     <div className="success-actions">
-                        <button onClick={() => navigate('/orders')} className="btn-solid">VIEW MY ORDERS</button>
+                        <button onClick={() => navigate(`/track-order?id=${orderId}`)} className="btn-solid">TRACK MY ORDER</button>
                         <button onClick={() => navigate('/')} className="btn-outline">RETURN TO STORE</button>
                     </div>
 
                     <div className="success-footer">
-                        <p>A confirmation email has been sent to your registered address.</p>
+                        <p>Use your Tracking ID to check your order status anytime.</p>
                         <div className="footer-links">
-                            <a href="/track-order">TRACK SHIPMENT</a>
+                            <a href={`/track-order?id=${orderId}`}>TRACK SHIPMENT</a>
                             <span>|</span>
                             <a href="/contact">NEED ASSISTANCE?</a>
                         </div>

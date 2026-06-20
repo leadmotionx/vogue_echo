@@ -1,4 +1,4 @@
-﻿.track-page {
+.track-page {
     padding: 100px 0;
     min-height: 90vh;
 }
@@ -64,6 +64,15 @@
 
 .input-with-btn button:hover {
     background: black;
+}
+
+.track-hint {
+    font-size: 11px;
+    color: #888;
+    margin-top: 15px;
+    text-align: left;
+    font-style: italic;
+    line-height: 1.5;
 }
 
 /* Results Section */
