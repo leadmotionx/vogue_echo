@@ -11,6 +11,7 @@ const collectionRouter = require('./routes/collectionRoute');
 const subscriberRouter = require('./routes/subscriberRoute');
 const promoRouter = require('./routes/promoRoute');
 const dashboardRouter = require('./routes/dashboardRoute');
+const aiRouter = require('./routes/aiRoute');
 
 dotenv.config();
 
@@ -41,6 +42,7 @@ app.use('/api/collection', collectionRouter);
 app.use('/api/subscriber', subscriberRouter);
 app.use('/api/promo', promoRouter);
 app.use('/api/dashboard', dashboardRouter);
+app.use('/api/ai', aiRouter);
 
 app.get('/', (req, res) => {
     res.send('Vogue Echo API is running...');

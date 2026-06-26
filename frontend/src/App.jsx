@@ -18,6 +18,7 @@ import Success from "./pages/Success";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SearchBar from "./components/SearchBar";
+import Chatbot from "./components/Chatbot";
 import "./App.css";
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
           </Routes>
         </main>
 
+        <Chatbot />
         <Footer />
       </div>
     </Router>
